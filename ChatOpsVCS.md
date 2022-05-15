@@ -20,11 +20,8 @@ Adding a column should not need to be a migration, and adding a column is implic
 
 For these reasons, this system does not support `select *` and making a column non-nullable is an actual constriaint on everyone else using the database. In other words, "renaming should be YOUR" problem i.e. names are permenant at a certain level- future code must be backwards compatible with respect to renaming.
 
-Indexes should not live in the model i.e. should not live next to the fields... not in teh code next to the fields...should be queryable
+Indexes should not live in the model i.e. should not live next to the fields, or in the code next to the fields- instead indices will be created the first time a query is performed using that field in the query parameters. Querying by a field will idempotently create or reuse an index, and then have an index retention policy where unused indices are quietly dropped (logging optional / see V2)
 
-"I feel liek the way you sove this, ince wre reinventing sql, i syou... select whatever, indexed by... "
-idempotenly creates or reuses an index, and then have an index retenetion policy
-ceate index depenidng on the where???
 
 preemptively create ian index whenever anything foreign keys into you
 
