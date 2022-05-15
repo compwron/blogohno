@@ -4,6 +4,9 @@
 
 Because the dream of chatops is not just dead but has arisen from the deep with new friends
 
+## What are we giving up on? / Recreating?
+
+Git. Possibly also SQL.
 
 ## What would that even mean?
 
@@ -11,16 +14,12 @@ Because the dream of chatops is not just dead but has arisen from the deep with 
 
 
 # Data(base) migrations within the nightmare
-rewriting sql and git
-replacing 
-git
 
-Adding a column should not need to be a migration. Deleing a column should not happen. Columns can be garbage collected if you can prove that no depolyed code is relying on this column. Columns only relied upon by code run run in the last 30 days can be removed. (How? Ask V2)
 
-At no point are we undeploying any code, i.e. 
+Adding a column should not need to be a migration. Deleing a column should not happen. Columns can be garbage collected if you can prove that no depolyed code is relying on this column. Columns only relied upon by code run run in the last 30 days can be removed. (But at no point are we undeploying any code, so garbave collection will never occur.)
 code blog -> functional url for code, therenore never garbage collect
 
-use a columnar store and then no performance hit from ... (well no performance.,.,)
+Why no use a columnar store and then take no performance hit from these changes? (If you have no performance, taking a hit is meaningless!)
 yeah ok so sometimes missions of daollars is aws builds happen
 
 creating columns is implicit when you refer to it, deleitng oclumns is no longer asking aout itx
