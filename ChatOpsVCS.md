@@ -1,16 +1,25 @@
-what if your whole codebase were a whole bunch of slack messages
+## What if your whole codebase were a whole bunch of slack messages?
+
+## Why?
+
+Because the dream of chatops is not just dead but has arisen from the deep with new friends
 
 
+## What would that even mean?
+
+
+
+
+# Data(base) migrations within the nightmare
 rewriting sql and git
 replacing 
 git
 
-adding a column should not beed to be a migration
-deleing a column should not happen
-coilumns can be cgarbage collectd if you can prove that no pd=epolyed code is relying on this column
-at no point are we undeploying any code
+Adding a column should not need to be a migration. Deleing a column should not happen. Columns can be garbage collected if you can prove that no depolyed code is relying on this column. Columns only relied upon by code run run in the last 30 days can be removed. (How? Ask V2)
+
+At no point are we undeploying any code, i.e. 
 code blog -> functional url for code, therenore never garbage collect
-columns only relied upon bu code run run in 30 days can be 
+
 use a columnar store and then no performance hit from ... (well no performance.,.,)
 yeah ok so sometimes missions of daollars is aws builds happen
 
@@ -124,6 +133,8 @@ the obvious alertante meme andser is build in prolog or datalog
 
 what are some complicated db migrations? how can we plan for them? 
 
+
+how come up with? chatops? node script was upstream of this, just ssh in... slack bots.. a different type of terminal... natural language emulation sofr sending reminders instead of sheell thermianl... slackbot let you ssh into prod and do things... let the world have a record of your sins, if you have  devops channel ... d you ned oher mahanism for code storage or just move intot his sytem... 
 
 
 
