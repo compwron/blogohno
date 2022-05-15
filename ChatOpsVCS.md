@@ -16,18 +16,11 @@ Git. Possibly also SQL.
 # Data(base) migrations within the nightmare
 
 
-Adding a column should not need to be a migration. Deleing a column should not happen. Columns can be garbage collected if you can prove that no depolyed code is relying on this column. Columns only relied upon by code run run in the last 30 days can be removed. (But at no point are we undeploying any code, so garbave collection will never occur.)
-code blog -> functional url for code, therenore never garbage collect
+Adding a column should not need to be a migration, and adding a column is implicit when you refer to it. Deleing a column should not happen. Columns can be garbage collected if you can prove that no depolyed code is relying on this column. Columns only relied upon by code run run in the last 30 days can be removed. (But at no point are we undeploying any code, so garbage collection will never occur.)
 
-Why no use a columnar store and then take no performance hit from these changes? (If you have no performance, taking a hit is meaningless!)
-yeah ok so sometimes missions of daollars is aws builds happen
+For these reasons, this system does not support `select *` and making a column non-nullable is an actual constriaint on everyone else using the database. In other words, "renaming should be YOUR" problem i.e. names are permenant at a certain level- future code must be backwards compatible with respect to renaming.
 
-creating columns is implicit when you refer to it, deleitng oclumns is no longer asking aout itx
-do not support selct *
-making a column non nullable is an actual constriaingt on wveyoen else using teh db
-"renaming should be YOUR" problem
-
-indexes should no live sin the model?? should not live next to the fields... not in teh code next to the fields...should be queryable
+Indexes should not live in the model i.e. should not live next to the fields... not in teh code next to the fields...should be queryable
 
 "I feel liek the way you sove this, ince wre reinventing sql, i syou... select whatever, indexed by... "
 idempotenly creates or reuses an index, and then have an index retenetion policy
@@ -38,6 +31,11 @@ preemptively create ian index whenever anything foreign keys into you
 how do you defend against ppl whodont know how to use slack?
 in markdown you can do code blocks with denes 
 ircbridege
+
+code blog -> functional url for code, therefore never garbage collect. 
+
+
+Why not use a columnar store and then take no performance hit from these changes? (If you have no performance, taking a hit is meaningless!)
 
 
 chats
