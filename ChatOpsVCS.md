@@ -20,33 +20,24 @@ Adding a column should not need to be a migration, and adding a column is implic
 
 For these reasons, this system does not support `select *` and making a column non-nullable is an actual constriaint on everyone else using the database. In other words, "renaming should be YOUR" problem i.e. names are permenant at a certain level- future code must be backwards compatible with respect to renaming.
 
-Indexes should not live in the model i.e. should not live next to the fields, or in the code next to the fields- instead indices will be created the first time a query is performed using that field in the query parameters. Querying by a field will idempotently create or reuse an index, and then have an index retention policy where unused indices are quietly dropped (logging optional / see V2)
+Indexes should not live in the model i.e. should not live next to the fields, or in the code next to the fields- instead indices will be created the first time a query is performed using that field in the query parameters. Querying by a field will idempotently create or reuse an index, and then have an index retention policy where unused indices are quietly dropped (logging optional / see V2). However, the system will preemptively create an index whenever anything foreign keys into you
+
+In addition- why not use a columnar store and then take no performance hit from these changes? (If you have no performance, taking a hit is meaningless!)
 
 
-preemptively create ian index whenever anything foreign keys into you
+## Tools needed 
 
-how do you defend against ppl whodont know how to use slack?
-in markdown you can do code blocks with denes 
-ircbridege
+Tools that need to be built to built in order to do this:
 
-code blog -> functional url for code, therefore never garbage collect. 
-
-
-Why not use a columnar store and then take no performance hit from these changes? (If you have no performance, taking a hit is meaningless!)
+(Assuming that we're not rewriting slack and have a aslack instance that is handling auth and handing bot recieveng authorized and trusted messages of what user did what 
+cant have auth groups in slack but can have who gets added to which slack groups
 
 
-chats
-allowlist of approvers thumbsup deploys
-
-
-things to build that would need to be built in order to this
-slackbot to detect code chunks
-server for code chunks to be sent to
-second slack 
+1. slackbot to detect code chunks
+1. server for code chunks to be sent to by slackbot + engine to stitch them together into a codebase
+1. second slack instance for devops for the first slack instance
 "assuming we had a working system, what would the working sstem itself look like?"
 
-assuming were not rewriting slack and have a aslack instance that shandling auth and handing bot recieveng authorized and trusted messages of what user did what 
-cant have auth groups in slack but can have who gets added to which slack groups
 
 ultimate osurece o authority is slack admin, cant be kept out of private channel
 ultimate external source of truth, what webhook does slackbot post messages to from slckas end. 
@@ -106,7 +97,9 @@ code block is a file
 refactorig is fucked
 is that different than usual
 
-one of the ocmmon lints is dont make your fules too long right, so if the code block is longer than the slack message liit then ok for attachments
+One of the common lints is- "don't make your files too long" right? So if the code block is longer than the slack message then... disallow it? xD
+But also allow code as attachments for when lint is inevitably in need of circumvention
+Alternatelyliit then ok for attachments
 at a minimum need to attack CSVs into ... 
 images on website that are not base64, svg only lol
 brute force a dalle prompt that generated the hing reliably
