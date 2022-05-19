@@ -11,10 +11,7 @@ Git. Possibly also SQL.
 ## What would that even mean?
 
 
-
-
 # Data(base) migrations within the nightmare
-
 
 Adding a column should not need to be a migration, and adding a column is implicit when you refer to it. Deleing a column should not happen. Columns can be garbage collected if you can prove that no depolyed code is relying on this column. Columns only relied upon by code run run in the last 30 days can be removed. (But at no point are we undeploying any code, so garbage collection will never occur.)
 
@@ -25,52 +22,34 @@ Indexes should not live in the model i.e. should not live next to the fields, or
 In addition- why not use a columnar store and then take no performance hit from these changes? (If you have no performance, taking a hit is meaningless!)
 
 
-## Tools needed 
-
-Tools that need to be built to built in order to do this:
+## Tools that need to be built to built in order to do this:
 
 (Assuming that we're not rewriting slack and have a aslack instance that is handling auth and handing bot recieveng authorized and trusted messages of what user did what 
-cant have auth groups in slack but can have who gets added to which slack groups
+can't have auth groups in slack but can have who gets added to which slack groups
 
-
-1. slackbot to detect code chunks
+1. slackbot to detect code chunks posted in slack
 1. server for code chunks to be sent to by slackbot + engine to stitch them together into a codebase
-1. second slack instance for devops for the first slack instance
-"assuming we had a working system, what would the working sstem itself look like?"
+1. second slack instance for devops for the first slack instance?
+1. server endpoint to serve the assembled codebase for viewing by an editor like VSCode
+1. some way of running tests in CI i.e. subscribe to code changes somehow
+1. deploying the code - deploy each version to its own mini instance (version built via CI into a docker container or similar)
+1. system of record for which version is "prod" at any time ?
 
 
 ## Authentication and Authorization
 
 In this system, the ultimate source of authority is the chat (slack) administrator(s). Administrators cannot be kept out of private channels. 
 
-As for an ultimate external source of truth, that is - what webhook does slackbot post messages to? I.e. where does the code go - to where is the released version of the software... released? And again that can be configured by someone with permissions assigned by the slack admin. 
+As for an ultimate external source of truth, that is - what webhook does slackbot post messages to? I.e. where does the code go - to where is the released version of the software... released? And again that can be configured by someone with permissions assigned by the slack admin. This could be a single row single column database of which version of the thing are we using.... 
 
-single row single oclumn database of whaich version ofthe thing are we using.... 
+### About "deploying" to "prod": 
 
-cname, vercel, nextup, several ppl have built i... concept of build code, push docke conrainer, genrates urlll.. laxily when hits ndoins spins upo docker container
+CNAME record pointing at vercel or similar, using the concept of build code, push docker container, genrates url... lazily when hits it spins up a docker container - maybe via lambda plus DNS shenanigans / nginx plugin, "someone is going to wite some lua about this" Each URL will be a guid for global uniqueness
 
-lambda plus dns shenanigans /nmginx plugin
-"someone is going to wite some lua about this"
-
-
-http request -> read host header, colla host header, results in docker conainer spnu up... 
-inthe infinite hotel of doors, standard delarive indrastucts... 
-
-autoscaling required
-
-guids
-"I come from urbit, fan of perma names, put onto devops the compexity of that being true or affordable, which feels to me like its doable"
+Prod data will have to be durable but for all other deploys, provision a minimal database with an upper limit of size, and swap in the prod database when a release is "promoted"
 
 
-
-db group stable, 1mb limit per deploy, poke somethign to exceed
-
-
-how do you do any kind of observability fo this system
-scaling is auto, throughput is... 
-
-so this is intended to be a rep[lacement for git]
-
+### How to use the working system
 
 the core of it is is... 
 to put code into repo, make a chunj of code
