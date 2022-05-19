@@ -39,9 +39,12 @@ cant have auth groups in slack but can have who gets added to which slack groups
 "assuming we had a working system, what would the working sstem itself look like?"
 
 
-ultimate osurece o authority is slack admin, cant be kept out of private channel
-ultimate external source of truth, what webhook does slackbot post messages to from slckas end. 
-the released version ofthe software... 
+## Authentication and Authorization
+
+In this system, the ultimate source of authority is the chat (slack) administrator(s). Administrators cannot be kept out of private channels. 
+
+As for an ultimate external source of truth, that is - what webhook does slackbot post messages to? I.e. where does the code go - to where is the released version of the software... released? And again that can be configured by someone with permissions assigned by the slack admin. 
+
 single row single oclumn database of whaich version ofthe thing are we using.... 
 
 cname, vercel, nextup, several ppl have built i... concept of build code, push docke conrainer, genrates urlll.. laxily when hits ndoins spins upo docker container
