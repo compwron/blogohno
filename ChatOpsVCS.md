@@ -51,29 +51,16 @@ Prod data will have to be durable but for all other deploys, provision a minimal
 
 ### How to use the working system
 
-the core of it is is... 
-to put code into repo, make a chunj of code
-microservice is channel
-code block is a file
-code block replying to a message contianing a code block is "delete that file and" (reply is "link to previous message" in slack)
-a thread is a branch
-or instead of replying, a message with the same filename, make the bot post a diff in teh message about... the url for... 
-slack rate limits? not multiple bot messages than human messages? notifying of... 
+To put code into the "repository", make a chunk of code and post it in slack. Every slack channel is a microservice, and each code block is a file. To replace the contents of a file, start a thread against the original slack comment, and post a code block- this will replace the original. The slackbot should post a diff from the old code to the new code if you command it to- something like `bot diff` in your code message. A reply is a PR? TODO
 
-slack backups to json regularly
+To keep your codebase safe (since it is less likely that every developer will have an up to date copy maybe?), automate your slack backups - dump all the messages to json regularly. Maybe backed up to something like a database... (but the main code-complilation server will always have at the latest version, but it won't have history- the source of truth for code history is the messages in slack!)
 
-code is nominally stored in slack, backed up to table... 
 
-something grabs all the code from slack and 
-grab most recent message in thread isntead of recalculating, cache, ? 
-rom message deiverd column, first in cain of replues, first in column, what when is the mewssage posted... idex on tuple of that to get per message most recent. 
-the more code you have, the longer it will take to reply
-optimistic, less than 100mb code in system, perf is ok or at least solvable... 
+Optimistically while there is not an enormous amount of code in the system, performance for assembling the codebase will be negligable or at least solvable
 
-more than 1100 mb of external depenxvies
-git hustiry
-git hisotry per line give up on
-code gets approved by a certain number of thumbs up... 
+What about external dependencies? Well, we're not going to be able to vendor them- and posting a `yarn.lock` could be a little difficult, but `package.json` or similar will at least be reasonable
+
+Code blocks gets approved for "merge" into main by a certain number of thumbs up... 
 
 code block is a file
 refactorig is fucked
