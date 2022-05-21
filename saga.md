@@ -8,7 +8,11 @@ chatapp is the ui
 
 epics:
 1. accurately implement nock
+- story1: build obvious version of unify-as-isEqual - take two arguments and compare them without leaking them. No perfenhancements, no memory freeing.
+- story2: atoms
 1.5. namely it passes all the standard library tests in finite time
+1.100 any performance enhancements at all to nock (equality frees memory)
+- for the function misleadingly named unify
 2. ui: conform to urbit-worker interface / porcelin API-alike. (communication protocol btw manager and worker. unix pipe, nouns go in, nouns go out. manager does the rest. IFTT-ish)
 - find specs on interface / write tests that the current one passes...
 https://web.archive.org/web/20200403203553/https://deno.land/
