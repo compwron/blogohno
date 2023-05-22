@@ -1,3 +1,10 @@
+---
+layout: post
+title:  "ChatOpsVCS"
+date:   2023-05-10 10:22:14 -0700
+permalink: chatops-vcs
+---
+
 ## What if your whole codebase were a whole bunch of slack messages?
 
 ## Why?
